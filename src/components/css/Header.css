@@ -1,0 +1,34 @@
+.header {
+    background: #fdfdfd;
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 35px;
+    border-bottom: 2px solid #e9e8e8;
+    position: fixed;
+    width: 100%;
+    height: 52px;
+    top: 0;
+}
+
+.header .logo {
+    display: flex;
+    max-width: 100%;
+    max-height: 47px;
+    object-fit: contain;
+}
+
+.header .authBtns {
+    display: flex;
+}
+
+@media (max-width: 768px) {
+    .header {
+       padding: 3px 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .header {
+        padding: 3px 10px;
+    }
+}

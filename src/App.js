@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Header from './components/Header';
+import Post from './components/Post';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+	return (
+		<div>
+			<Header />
+			<Post
+				title='This is a post'
+				user='yashrajjj'
+				imageURL='https://www.cyberark.com/wp-content/uploads/2019/11/Developer.jpg'
+			/>
+			<Post
+				title="Man's post"
+				user='manpreettt'
+				imageURL='https://www.cyberark.com/wp-content/uploads/2019/11/Developer.jpg'
+			/>
+			<Post
+				title='This is the best'
+				user='meharrr'
+				imageURL='https://www.cyberark.com/wp-content/uploads/2019/11/Developer.jpg'
+			/>
+		</div>
+	);
+};
 
 export default App;
