@@ -1,26 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from './components/Header';
 import Post from './components/Post';
+import { auth, db, googleAuth } from './firebase';
+import { useStateValue } from './StateProvider';
 
 const App = () => {
+	const [{ posts, user }, dispatch] = useStateValue();
+	useEffect(() => {
+		localStorage.setItem('user', JSON.stringify(user));
+	}, [user]);
+	useEffect(() => {
+		db.collection('posts').onSnapshot((snapshot) => {
+			dispatch({
+				type: 'SET_POSTS',
+				posts: snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() })),
+			});
+		});
+	}, [dispatch]);
+
 	return (
 		<div>
 			<Header />
-			<Post
-				title='This is a post'
-				user='yashrajjj'
-				imageURL='https://www.cyberark.com/wp-content/uploads/2019/11/Developer.jpg'
-			/>
-			<Post
-				title="Man's post"
-				user='manpreettt'
-				imageURL='https://www.cyberark.com/wp-content/uploads/2019/11/Developer.jpg'
-			/>
-			<Post
-				title='This is the best'
-				user='meharrr'
-				imageURL='https://www.cyberark.com/wp-content/uploads/2019/11/Developer.jpg'
-			/>
+			{posts.map((post) => (
+				<Post
+					key={post.id}
+					title={post.post.title}
+					user={post.post.user}
+					imageURL={post.post.imageURL}
+				/>
+			))}
 		</div>
 	);
 };
