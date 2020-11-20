@@ -1,0 +1,61 @@
+.toggleCrnp {
+    box-sizing: border-box;
+    z-index: 9999;
+}
+
+.toggleCrnp .icon {
+    font-size: 40px;
+    z-index: 9999;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 3px;
+    border: 1px solid #111;
+    border-radius: 7px;
+    margin: 10px;
+}
+
+.toggleCrnp .hide {
+    display: none;
+}
+
+.crnp {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    left: -100vw;
+    background: #f5f4f4;
+    width: 100%;
+    transition: all 0.3s !important;
+    display: flex;
+    top: 0;
+    min-height: 100vh;
+}
+
+.showCrnp {
+    left: 0px !important;
+    position: fixed;
+    transition: all 0.3s !important;
+}
+
+.crnp .crnpForm {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+}
+
+.crnp .crnpForm .input {
+    margin: 5px 0px;
+}
+
+.crnp .crnpForm .fileInput {
+    padding: 5px 0px;
+}
+
+.crnp .imageUploadProgress {
+    width: 100%;
+    min-width: 300px;
+}

@@ -161,38 +161,43 @@ const Header = () => {
 					<h1 style={{ fontWeight: 500 }} className='d-flex mx-auto'>
 						Login
 					</h1>
-					<FormGroup>
-						<FormControl>
-							<Input
+					<form>
+						<FormGroup>
+							<FormControl>
+								<Input
+									required='true'
+									className='input mx-auto'
+									value={email}
+									onChange={(e) => setEmail(e.target.value)}
+									placeholder='Email'
+								/>
+							</FormControl>
+							<FormControl>
+								<Input
+									required='true'
+									className='input mx-auto'
+									value={password}
+									onChange={(e) => setPassword(e.target.value)}
+									placeholder='Password'
+								/>
+							</FormControl>
+							<Button
+								variant='outlined'
 								className='input mx-auto'
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-								placeholder='Email'
-							/>
-						</FormControl>
-						<FormControl>
-							<Input
-								className='input mx-auto'
-								value={password}
-								onChange={(e) => setPassword(e.target.value)}
-								placeholder='Password'
-							/>
-						</FormControl>
-						<Button
-							variant='outlined'
-							className='input mx-auto'
-							onClick={handleLogin}
-							style={{
-								marginTop: 8,
-								maxWidth: 340,
-								display: 'flex',
-								marginRight: 5,
-								marginLeft: 5,
-							}}
-						>
-							Login
-						</Button>
-					</FormGroup>
+								onClick={handleLogin}
+								type='submit'
+								style={{
+									marginTop: 8,
+									maxWidth: 340,
+									display: 'flex',
+									marginRight: 5,
+									marginLeft: 5,
+								}}
+							>
+								Login
+							</Button>
+						</FormGroup>
+					</form>
 					<h2 className='d-flex mx-auto'>-OR-</h2>
 					<Button
 						variant='outlined'
@@ -208,7 +213,7 @@ const Header = () => {
 					>
 						Login with Google
 						<img
-							src='https://assets.stickpng.com/images/5847f9cbcef1014c0b5e48c8.png'
+							src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png'
 							alt='Google Logo'
 							style={{ maxHeight: 24, marginLeft: 7 }}
 						/>
@@ -243,6 +248,7 @@ const Header = () => {
 					<FormGroup>
 						<FormControl variant='outlined'>
 							<Input
+								required='true'
 								className='input mx-auto'
 								value={username}
 								onChange={(e) => setUsername(e.target.value)}
@@ -251,6 +257,7 @@ const Header = () => {
 						</FormControl>
 						<FormControl variant='outlined'>
 							<Input
+								required='true'
 								className='input mx-auto'
 								placeholder='Email'
 								value={email}
@@ -259,6 +266,7 @@ const Header = () => {
 						</FormControl>
 						<FormControl variant='outlined'>
 							<Input
+								required='true'
 								className='input mx-auto'
 								placeholder='Password'
 								value={password}
@@ -295,7 +303,7 @@ const Header = () => {
 					>
 						Sign Up with Google
 						<img
-							src='https://assets.stickpng.com/images/5847f9cbcef1014c0b5e48c8.png'
+							src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png'
 							alt='Google Logo'
 							style={{ maxHeight: 24, marginLeft: 7 }}
 						/>

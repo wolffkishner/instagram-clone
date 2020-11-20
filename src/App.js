@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
+import CreateNewPost from './components/CreateNewPost';
 import Header from './components/Header';
 import Post from './components/Post';
-import { auth, db, googleAuth } from './firebase';
+import { db } from './firebase';
 import { useStateValue } from './StateProvider';
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
 					imageURL={post.post.imageURL}
 				/>
 			))}
+			{user && <CreateNewPost />}
 		</div>
 	);
 };
