@@ -2,7 +2,6 @@ import {
 	Button,
 	FormControl,
 	FormGroup,
-	Input,
 	LinearProgress,
 	TextField,
 } from '@material-ui/core';
@@ -11,6 +10,7 @@ import React, { useState } from 'react';
 import { db, storage } from '../firebase';
 import firebase from 'firebase';
 import './css/CreateNewPost.css';
+import imageCompression from 'browser-image-compression';
 import { useStateValue } from '../StateProvider';
 
 const CreateNewPost = () => {
@@ -18,12 +18,31 @@ const CreateNewPost = () => {
 	const [crnpOpen, setCrnpOpen] = useState(false);
 	const [postTitle, setPostTitle] = useState('');
 	const [image, setImage] = useState(null);
+	const [imageCompressing, setImageCompressing] = useState(false);
 	const [uploadProgress, setUploadProgress] = useState(0);
 	const handleCrnp = () => {
 		if (crnpOpen === true) {
 			setCrnpOpen(false);
 		} else {
 			setCrnpOpen(true);
+		}
+	};
+
+	const handleImageChange = async (event) => {
+		setImageCompressing(true);
+		const imageFile = event.target.files[0];
+
+		const options = {
+			maxSizeMB: 0.5,
+			maxWidthOrHeight: 1920,
+			useWebWorker: true,
+		};
+		try {
+			const compressedFile = await imageCompression(imageFile, options);
+			await setImage(compressedFile);
+			setImageCompressing(false);
+		} catch (error) {
+			console.log(error);
 		}
 	};
 
@@ -67,20 +86,13 @@ const CreateNewPost = () => {
 							setUploadProgress(0);
 							setImage();
 							setPostTitle('');
-						}, 650);
+						}, 400);
 					})
 					.catch((err) => {
 						console.log(err);
 					});
 			}
 		);
-	};
-
-	const handleImageChange = (e) => {
-		if (e.target.files[0]) {
-			setImage(e.target.files[0]);
-			console.log(image);
-		}
 	};
 
 	return (
@@ -99,6 +111,7 @@ const CreateNewPost = () => {
 								className='imageUploadProgress'
 								variant='determinate'
 								max='100'
+								style={{ margin: '7px 0px' }}
 							/>
 							<TextField
 								variant='outlined'
@@ -113,24 +126,35 @@ const CreateNewPost = () => {
 							/>
 						</FormControl>
 						<FormControl>
-							<Input
+							<input
 								variant='outlined'
 								type='file'
-								accept='image'
+								accept='image/*'
 								placeholder='Upload an Image'
 								className='input fileInput'
 								required={true}
 								onChange={handleImageChange}
 							/>
 						</FormControl>
-						<Button
-							variant='outlined'
-							type='submit'
-							className='input'
-							onClick={createPost}
-						>
-							Submit
-						</Button>
+						{imageCompressing ? (
+							<>
+								<LinearProgress style={{ margin: '5px 0px' }} />
+								<Button variant='outlined' className='input'>
+									Please wait, your image is Processing...
+								</Button>
+							</>
+						) : (
+							<>
+								<Button
+									variant='outlined'
+									type='submit'
+									className='input'
+									onClick={createPost}
+								>
+									Submit
+								</Button>
+							</>
+						)}
 					</FormGroup>
 				</form>
 			</div>

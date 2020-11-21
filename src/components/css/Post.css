@@ -48,6 +48,12 @@
     padding: 3px 0px;
 }
 
+@media (min-width: 992px) {
+    .post .displayImage {
+        max-height: 63vh !important;
+    }
+}
+
 @media (max-width: 992px) {
     .post {
         max-width: 60%;

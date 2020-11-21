@@ -17,13 +17,19 @@ const App = () => {
 	}, [user]);
 	useEffect(() => {
 		const getPosts = async () => {
-			await db.collection('posts').onSnapshot((snapshot) => {
-				dispatch({
-					type: 'SET_POSTS',
-					posts: snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() })),
+			await db
+				.collection('posts')
+				.orderBy('timestamps', 'desc')
+				.onSnapshot((snapshot) => {
+					dispatch({
+						type: 'SET_POSTS',
+						posts: snapshot.docs.map((doc) => ({
+							id: doc.id,
+							post: doc.data(),
+						})),
+					});
+					setLoading(false);
 				});
-				setLoading(false);
-			});
 		};
 		getPosts();
 	}, [dispatch]);

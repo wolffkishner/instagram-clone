@@ -6,7 +6,7 @@ const Loading = () => {
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		minHeight: 'calc(100vh - 52px)',
+		minHeight: 'calc(100vh - 78px)',
 	};
 
 	const loadingIconStyle = {
