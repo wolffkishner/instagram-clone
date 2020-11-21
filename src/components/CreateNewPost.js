@@ -3,6 +3,7 @@ import {
 	FormControl,
 	FormGroup,
 	Input,
+	LinearProgress,
 	TextField,
 } from '@material-ui/core';
 import { ArrowForwardRounded, CloseRounded } from '@material-ui/icons';
@@ -32,7 +33,7 @@ const CreateNewPost = () => {
 			alert('Please specify the post title');
 		}
 
-		if ((!postTitle === '') & (image === null)) {
+		if (image === null) {
 			alert('Please select an image');
 		}
 		const uploadTask = storage.ref(`images/${image.name}`).put(image);
@@ -93,9 +94,10 @@ const CreateNewPost = () => {
 				<form className='crnpForm' noValidate>
 					<FormGroup>
 						<FormControl>
-							<progress
+							<LinearProgress
 								value={uploadProgress}
 								className='imageUploadProgress'
+								variant='determinate'
 								max='100'
 							/>
 							<TextField

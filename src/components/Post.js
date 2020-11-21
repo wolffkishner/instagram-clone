@@ -10,6 +10,7 @@ const Post = ({ title, user, imageURL }) => {
 						src='https://ssl.gstatic.com/images/branding/product/1x/avatar_square_grey_512dp.png'
 						alt='user'
 						className='postAvatar my-auto'
+						loading='lazy'
 					/>
 				</div>
 				<div className='postText my-auto'>
